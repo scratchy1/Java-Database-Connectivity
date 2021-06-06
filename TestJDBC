@@ -1,0 +1,17 @@
+public class TestJDBC{
+ public static void main( String[] args ) throws Exception {
+  Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+  Connection cx = DriverManager.getConnection(
+  "jdbc:derby:mybase","login","password");
+  Statement st = cx.createStatement();
+  ResultSetrs = st.executeQuery( "SELECT * FROM persons" );
+  while (rs.next()) {
+    String name = rs.getString("name");
+    int age = rs.getInt("age");
+    System.out.println( name + " is " + age + " years old." );
+    }
+    rs.close(); 
+    st.close();
+    cx.close();
+  }
+} 
